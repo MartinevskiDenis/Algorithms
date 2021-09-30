@@ -1,0 +1,60 @@
+input: 'cabdabda'
+blank: ' '
+start state: q1
+table:
+  q1:
+    [a, c, d, 'e']: {R: q1}
+    ' ': {L: q8}
+    b: {write: b, R: q2}
+  q2:
+    a: {write: e, R: q3}
+    b: {write: e, R: q4}
+    c: {write: e, R: q5}
+    d: {write: e, R: q6}
+    e: {write: e, R: q7}
+    ' ': {write: e, R: q1}
+  q3:
+    a: {write: a, R: q3}
+    b: {write: a, R: q4}
+    c: {write: a, R: q5}
+    d: {write: a, R: q6}
+    e: {write: a, R: q7}
+    ' ': {write: a, R: q1}
+  q4:
+    a: {write: b, R: q3}
+    b: {write: b, R: q4}
+    c: {write: b, R: q5}
+    d: {write: b, R: q6}
+    e: {write: b, R: q7}
+    ' ': {write: b, R: q1}
+  q5:
+    a: {write: c, R: q3}
+    b: {write: c, R: q4}
+    c: {write: c, R: q5}
+    d: {write: c, R: q6}
+    e: {write: c, R: q7}
+    ' ': {write: c, R: q1}
+  q6:
+    a: {write: d, R: q3}
+    b: {write: d, R: q4}
+    c: {write: d, R: q5}
+    d: {write: d, R: q6}
+    e: {write: d, R: q7}
+    ' ': {write: d, R: q1}
+  q7:
+    a: {write: e, R: q3}
+    b: {write: e, R: q4}
+    c: {write: e, R: q5}
+    d: {write: e, R: q6}
+    e: {write: e, R: q7}
+    ' ': {write: e, R: q1}
+  q8:
+    a: {write: a, L: q8}
+    b: {write: b, R: q2}
+    c: {write: c, L: q8}
+    d: {write: d, L: q8}
+    e: {write: e, L: q9}
+    ' ': {write: ' ', R: qz}
+  q9:
+    [a,b,c,d,e,' ']: {L: q8}
+  qz:

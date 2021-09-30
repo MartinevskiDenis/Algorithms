@@ -1,0 +1,24 @@
+input: '10A010AA101'
+blank: ' '
+start state: qq
+table:
+# Первые два состояния находят начальное положение головки
+  qq:
+    [1,0]: {R: qq}
+    'A': {R: qw}
+  qw:
+    0: {R: q1}
+  q1:
+    'A': {R: q2}
+    1: {write: 'A', R: q1}
+    0: {write: 1, R: q1}
+  q2:
+    [0,1,'A']: {R: q3}
+  q3:
+    [1,'A']: {write: 'A', R: q4}
+    0: {write: 1, R: q4}
+  q4:
+    'A': {R: qz}
+    1: {L: q4}
+    0: {L: q1}
+  qz:
